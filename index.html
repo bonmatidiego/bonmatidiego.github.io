@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Diego Bonmatí Salazar">
+<meta property="og:description" content="Neuroscientist in Helsinki. Inter-brain synchrony, agreement and influence; writing on polarisation and information manipulation.">
+<meta property="og:image" content="photo.png">
+<link rel="icon" href="photo.png">
+<title>Diego Bonmatí Salazar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Diego Bonmatí Salazar, neuroscientist in Helsinki. Research on inter-brain synchrony, agreement and influence, and writing on polarisation and information manipulation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<style>
+/* Layout: a top bar (name + sections) over a two-column shell, a sticky identity sidebar beside one reading column */
+:root {
+  --bg: #f3f5f6;
+  --surface: #ffffff;
+  --fg: #16202a;
+  --muted: #586672;
+  --rule: #d6dde2;
+  --accent: #125f7a;   /* signal A: Baltic teal */
+  --accent-2: #a8701f; /* signal B: Alicante ochre */
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10161b; --surface: #161f26; --fg: #e4e9ec; --muted: #98a6b0;
+    --rule: #28343d; --accent: #62b4d0; --accent-2: #d8a157; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #10161b; --surface: #161f26; --fg: #e4e9ec; --muted: #98a6b0;
+  --rule: #28343d; --accent: #62b4d0; --accent-2: #d8a157; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--display);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- top bar ---------- */
+.topbar {
+  border-bottom: 1px solid var(--rule);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.topbar-inner {
+  max-width: 1080px; margin: 0 auto; padding-block: 1.1rem;
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.75rem 2rem;
+}
+.wordmark {
+  font-family: var(--sans); font-weight: 600; font-size: 0.82rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg); text-decoration: none;
+}
+.nav { display: flex; flex-wrap: wrap; gap: 0.35rem 1.6rem; list-style: none; margin: 0; padding: 0; }
+.nav a {
+  font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+  text-decoration: none; padding-block: 0.2rem; border-bottom: 1px solid transparent;
+}
+.nav a:hover { color: var(--fg); }
+.nav a[aria-current="page"] { color: var(--fg); border-bottom-color: var(--accent); }
+
+/* ---------- shell ---------- */
+.shell {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 3rem 4rem;
+  display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 4rem;
+}
+.id { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 2rem); align-self: start; text-align: center; }
+.id img { width: 100%; height: auto; max-width: 230px; aspect-ratio: 1; object-fit: cover; display: block; margin: 0 auto 1.1rem; border-radius: 2px; }
+.id-name { font-family: var(--display); font-size: 1.3rem; font-weight: 500; line-height: 1.25; margin: 0 0 0.35rem; }
+.id-role { font-family: var(--sans); font-size: 0.86rem; line-height: 1.45; color: var(--muted); margin: 0; }
+.id-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem 1rem; margin-top: 1rem; font-family: var(--sans); font-size: 0.8rem; }
+.id-links a { color: var(--muted); }
+.id-links a:hover { color: var(--accent); }
+
+main { min-width: 0; max-width: 680px; }
+.view { display: grid; gap: 2.75rem; }
+.view[hidden] { display: none !important; }
+
+.eyebrow {
+  font-family: var(--sans); font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
+  margin: 0 0 1rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--rule);
+}
+section > p { margin: 0 0 1rem; }
+section > p:last-child { margin-bottom: 0; }
+.lead { font-size: 1.5rem; line-height: 1.38; font-weight: 400; margin: 0 0 1.4rem; text-wrap: balance; }
+h3 { font-family: var(--display); font-size: 1.2rem; font-weight: 600; line-height: 1.3; margin: 0 0 0.3rem; text-wrap: balance; }
+.muted { color: var(--muted); }
+.small { font-family: var(--sans); font-size: 0.88rem; line-height: 1.55; }
+
+.questions { margin: 0.4rem 0 1rem; padding: 0; list-style: none; display: grid; gap: 0.65rem; }
+.questions li { padding-left: 1.4rem; position: relative; }
+.questions li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 0.7rem; height: 1px; background: var(--accent); }
+
+.plain { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.35rem; }
+
+/* figure */
+figure { margin: 0; }
+.fig-wrap { background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: 1rem 1rem 0.6rem; }
+canvas { display: block; width: 100%; height: 150px; }
+.fig-axis { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); padding-top: 0.4rem; }
+figcaption { font-family: var(--sans); font-size: 0.84rem; line-height: 1.5; color: var(--muted); margin-top: 0.7rem; }
+.key { display: inline-flex; align-items: center; gap: 0.4rem; margin-right: 1rem; }
+.key i { display: inline-block; width: 14px; height: 2px; }
+
+/* CV-style entries */
+.entries { display: grid; gap: 1.35rem; }
+.entry { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.25rem; }
+.when { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); padding-top: 0.28rem; font-variant-numeric: tabular-nums; }
+.entry p { margin: 0; }
+.entry .org { font-family: var(--sans); font-size: 0.9rem; color: var(--muted); margin-top: 0.1rem; }
+.entry .detail { font-size: 1.02rem; margin-top: 0.35rem; }
+.entry em { font-style: italic; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0; padding: 0; list-style: none; }
+.tags li { font-family: var(--sans); font-size: 0.8rem; color: var(--fg); border: 1px solid var(--rule); background: var(--surface); padding: 0.2rem 0.6rem; border-radius: 999px; }
+
+/* contact */
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 0.9rem; margin: 0.4rem 0 1rem; }
+.email { font-family: var(--mono); font-size: 0.98rem; background: var(--surface); border: 1px solid var(--rule); padding: 0.35rem 0.7rem; border-radius: 3px; user-select: all; overflow-wrap: anywhere; }
+button.copy {
+  font-family: var(--sans); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+  color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 3px;
+  padding: 0.35rem 0.75rem; cursor: pointer;
+}
+button.copy:hover { background: var(--accent); color: var(--bg); }
+
+/* footer */
+footer {
+  border-top: 1px solid var(--rule);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.foot { max-width: 1080px; margin: 0 auto; padding-block: 2rem 2.5rem; text-align: center; font-family: var(--sans); font-size: 0.82rem; color: var(--muted); display: grid; gap: 0.5rem; }
+.foot a { color: var(--muted); }
+.foot .links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem 1.2rem; }
+.foot .ai { font-size: 0.76rem; opacity: 0.85; }
+
+@media (max-width: 760px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 2.25rem; padding-block: 1.75rem 3rem; }
+  .id { position: static; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 1rem; align-items: center; text-align: left; }
+  .id img { width: 96px; height: 96px; margin: 0; }
+  .id-links { justify-content: flex-start; margin-top: 0.6rem; }
+  .lead { font-size: 1.3rem; }
+  .entry { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
+  .when { padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* language switch */
+html[lang="es"] [data-l="en"], html:not([lang="es"]) [data-l="es"] { display: none !important; }
+.topnav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.75rem; }
+.langs { display: flex; gap: 0.2rem; }
+.langs button {
+  font-family: var(--sans); font-size: 0.74rem; font-weight: 500; letter-spacing: 0.12em;
+  background: none; border: 1px solid transparent; color: var(--muted);
+  padding: 0.12rem 0.4rem; border-radius: 3px; cursor: pointer;
+}
+.langs button:hover { color: var(--fg); }
+.langs button[aria-pressed="true"] { color: var(--fg); border-color: var(--rule); background: var(--surface); }
+</style>
+<style>html{-webkit-text-size-adjust:100%} body{margin:0} img{max-width:100%} [hidden]{display:none!important}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+<script>
+(function () {
+  var l = null;
+  try { l = localStorage.getItem("lang"); } catch (e) {}
+  if (l !== "en" && l !== "es") l = /^es\b/i.test(navigator.language || "") ? "es" : "en";
+  document.documentElement.lang = l;
+})();
+</script>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="#about">Diego Bonmatí Salazar</a>
+    <div class="topnav">
+      <nav aria-label="Sections">
+        <ul class="nav">
+          <li><a href="#about" data-view="about"><span data-l="en">About</span><span data-l="es">Sobre mí</span></a></li>
+          <li><a href="#research" data-view="research"><span data-l="en">Research</span><span data-l="es">Investigación</span></a></li>
+          <li><a href="#cv" data-view="cv">CV</a></li>
+          <li><a href="#writing" data-view="writing"><span data-l="en">Writing</span><span data-l="es">Escritos</span></a></li>
+          <li><a href="#contact" data-view="contact"><span data-l="en">Contact</span><span data-l="es">Contacto</span></a></li>
+        </ul>
+      </nav>
+      <div class="langs" role="group" aria-label="Language / Idioma">
+        <button type="button" id="lang-en" data-set-lang="en" lang="en">EN</button>
+        <button type="button" id="lang-es" data-set-lang="es" lang="es">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="id" aria-label="Profile">
+    <img src="photo.png" alt="Diego Bonmatí Salazar" width="640" height="640">
+    <div>
+      <p class="id-name">Diego Bonmatí Salazar</p>
+      <p class="id-role" data-l="en">Neuroscientist<br>Human interaction, influence &amp; information<br>Helsinki, Finland</p>
+      <p class="id-role" data-l="es">Neurocientífico<br>Interacción humana, influencia e información<br>Helsinki, Finlandia</p>
+      <div class="id-links">
+        <a href="https://www.linkedin.com/in/diegobonmati" rel="noopener">LinkedIn</a>
+        <a href="https://substack.com/@dbsnews" rel="noopener">Substack</a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ================= ABOUT ================= -->
+    <div class="view" id="view-about">
+      <section data-l="en">
+        <p class="lead">I study how people come to agree, and how influence travels: from one mind to another, from a conversation to a group, and from groups to whole societies.</p>
+        <p>I hold an MSc in Neuroscience from the University of Helsinki and an MSci in Biochemistry from the University of Bristol. For my master’s thesis I used EEG hyperscanning, recording two brains at the same time, to ask whether inter-brain synchrony helps people reach agreement when they discuss topics of different emotional weight. The thesis was graded 5/5 (excellent).</p>
+        <p>I currently work in scientific and regulatory support at the European Chemicals Agency (ECHA) in Helsinki.</p>
+      </section>
+      <section data-l="es">
+        <p class="lead">Estudio cómo llegamos a ponernos de acuerdo y cómo viaja la influencia: de una mente a otra, de una conversación a un grupo y de los grupos a sociedades enteras.</p>
+        <p>Tengo un máster (MSc) en Neurociencia por la Universidad de Helsinki y un máster integrado (MSci) en Bioquímica por la Universidad de Bristol. En mi trabajo de fin de máster utilicé hiperescaneo con EEG, que registra dos cerebros a la vez, para estudiar si la sincronía entre cerebros ayuda a alcanzar acuerdos al debatir temas de distinta carga emocional. El trabajo obtuvo la máxima calificación (5/5, excelente).</p>
+        <p>Actualmente trabajo en apoyo científico y regulatorio en la Agencia Europea de Sustancias y Mezclas Químicas (ECHA), en Helsinki.</p>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Research</h2>
+        <p>My work sits where neuroscience meets political behaviour. Three questions guide it:</p>
+        <ul class="questions">
+          <li>What happens between two brains when people move toward agreement, or fail to?</li>
+          <li>How does the emotional weight of a topic change the way we listen, persuade and coordinate?</li>
+          <li>How do these interpersonal mechanisms scale up to polarisation, propaganda and information operations?</li>
+        </ul>
+        <p><a href="#research">More on my research</a></p>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Investigación</h2>
+        <p>Mi trabajo se sitúa donde la neurociencia se encuentra con el comportamiento político. Lo guían tres preguntas:</p>
+        <ul class="questions">
+          <li>¿Qué ocurre entre dos cerebros cuando las personas se acercan a un acuerdo, o no lo consiguen?</li>
+          <li>¿Cómo cambia la carga emocional de un tema la forma en que escuchamos, persuadimos y nos coordinamos?</li>
+          <li>¿Cómo escalan estos mecanismos interpersonales hasta la polarización, la propaganda y las operaciones de información?</li>
+        </ul>
+        <p><a href="#research">Más sobre mi investigación</a></p>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Science for policy</h2>
+        <p>I have spent much of my time translating research for people who make decisions. At the University of Helsinki I turned neuroscience findings into evidence-based guidance for parents, educators and policymakers, and in the university’s International Affairs office I worked on research partnerships across the Nordic countries and North America. At Bristol I synthesised scientific literature into recommendations for healthcare policymakers.</p>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Ciencia para las políticas públicas</h2>
+        <p>He dedicado buena parte de mi trabajo a traducir la investigación para quienes toman decisiones. En la Universidad de Helsinki convertí hallazgos de neurociencia en orientaciones basadas en la evidencia para familias, docentes y responsables políticos, y en la oficina de Relaciones Internacionales de la universidad trabajé en alianzas de investigación con los países nórdicos y Norteamérica. En Bristol sinteticé literatura científica en recomendaciones para responsables de políticas sanitarias.</p>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Writing</h2>
+        <p>I write long-form essays on democratic theory, political polarisation, and cognitive and informational manipulation: propaganda, persuasion and the way digital media capture attention. <a href="#writing">Read more</a></p>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Escritos</h2>
+        <p>Escribo ensayos de fondo sobre teoría democrática, polarización política y manipulación cognitiva e informativa: propaganda, persuasión y la manera en que los medios digitales capturan la atención. <a href="#writing">Leer más</a></p>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Outside research</h2>
+        <p>I grew up near Alicante, on the Spanish Mediterranean, studied in Bristol and have lived in Finland since 2023. Away from work I train Brazilian jiu-jitsu, spend as much time as I can in the Finnish outdoors, and read political philosophy, from Plato onwards.</p>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Fuera de la investigación</h2>
+        <p>Crecí cerca de Alicante, en el Mediterráneo, estudié en Bristol y vivo en Finlandia desde 2023. Fuera del trabajo entreno jiu-jitsu brasileño, paso todo el tiempo que puedo en la naturaleza finlandesa y leo filosofía política, de Platón en adelante.</p>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Affiliations &amp; networks</h2>
+        <ul class="plain small">
+          <li>University of Helsinki, Master’s Programme in Neuroscience (alumnus)</li>
+          <li>NeuroSchool, Aix-Marseille Université (fellow)</li>
+          <li>Una Europa, student engagement</li>
+          <li>European Youth Parliament</li>
+        </ul>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Afiliaciones y redes</h2>
+        <ul class="plain small">
+          <li>Universidad de Helsinki, Máster en Neurociencia (antiguo alumno)</li>
+          <li>NeuroSchool, Aix-Marseille Université (becario)</li>
+          <li>Una Europa, participación estudiantil</li>
+          <li>Parlamento Europeo de los Jóvenes</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- ================= RESEARCH ================= -->
+    <div class="view" id="view-research" hidden>
+      <section data-l="en">
+        <h2 class="eyebrow">Research</h2>
+        <p class="lead">How do two people end up on the same page, and what does it take for that to scale to a society?</p>
+        <p>Most of what we know about persuasion and agreement comes from people studied alone, reading a message or answering a survey. But opinions usually change in conversation. I use hyperscanning, recording the brain activity of two people while they talk face to face, to study agreement as something that happens between people rather than inside one head.</p>
+        <p>The same questions run up the scale. The mechanisms that let two people coordinate are the ones that propaganda, polarising media and information operations exploit across whole populations. I am interested in both ends of that chain.</p>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Investigación</h2>
+        <p class="lead">¿Cómo llegan dos personas a entenderse, y qué hace falta para que eso escale a una sociedad?</p>
+        <p>Casi todo lo que sabemos sobre persuasión y acuerdo procede de estudiar a personas aisladas, leyendo un mensaje o respondiendo una encuesta. Pero las opiniones suelen cambiar conversando. Utilizo el hiperescaneo, que registra la actividad cerebral de dos personas mientras hablan cara a cara, para estudiar el acuerdo como algo que sucede entre personas y no dentro de una sola cabeza.</p>
+        <p>Las mismas preguntas se repiten a mayor escala. Los mecanismos que permiten a dos personas coordinarse son los que la propaganda, los medios polarizadores y las operaciones de información explotan en poblaciones enteras. Me interesan los dos extremos de esa cadena.</p>
+      </section>
+
+      <figure>
+        <div class="fig-wrap">
+          <canvas id="plv" role="img" aria-label="Two oscillating signals: on the left they drift at different rhythms, on the right they lock into a fixed phase relationship."></canvas>
+          <div class="fig-axis">
+            <span><span data-l="en">out of phase</span><span data-l="es">desfasadas</span></span>
+            <span><span data-l="en">phase-locked</span><span data-l="es">en fase</span></span>
+          </div>
+        </div>
+        <figcaption>
+          <span class="key"><i style="background: var(--accent)"></i><span data-l="en">Speaker A</span><span data-l="es">Hablante A</span></span>
+          <span class="key"><i style="background: var(--accent-2)"></i><span data-l="en">Speaker B</span><span data-l="es">Hablante B</span></span><br>
+          <span data-l="en">What inter-brain synchrony measures. The phase-locking value (PLV) runs from 0, when two signals keep no consistent timing, to 1, when their rhythms stay in a fixed relationship.</span>
+          <span data-l="es">Lo que mide la sincronía entre cerebros. El valor de sincronización de fase (PLV) va de 0, cuando dos señales no mantienen una relación temporal estable, a 1, cuando sus ritmos guardan una relación fija.</span>
+        </figcaption>
+      </figure>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Projects</h2>
+        <div class="entries">
+          <div class="entry">
+            <div class="when">2025–2026</div>
+            <div>
+              <h3>The effect of inter-brain synchrony on reaching agreement during discussions of emotionally varied topics</h3>
+              <p class="org">Master’s thesis, Faculty of Medicine, University of Helsinki · grade 5/5</p>
+              <p class="detail">Signal processing and statistical analysis of EEG from a naturalistic hyperscanning experiment, testing how inter-brain synchrony relates to the formation of a joint opinion across emotionally different conversations.</p>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="when">2025</div>
+            <div>
+              <h3>Measuring synchrony robustly</h3>
+              <p class="org">NeuroSchool Fellow, Institut de Neurosciences des Systèmes, Aix-Marseille Université</p>
+              <p class="detail">Built inter-brain phase-locking pipelines for a face-to-face hyperscanning dataset, comparing synchrony metrics and how sensitive each is to muscle artefact.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Proyectos</h2>
+        <div class="entries">
+          <div class="entry">
+            <div class="when">2025–2026</div>
+            <div>
+              <h3>El efecto de la sincronía entre cerebros en la consecución de acuerdos al debatir temas de distinta carga emocional</h3>
+              <p class="org">Trabajo de fin de máster, Facultad de Medicina, Universidad de Helsinki · calificación 5/5</p>
+              <p class="detail">Procesamiento de señales y análisis estadístico de EEG de un experimento de hiperescaneo naturalista, para analizar cómo se relaciona la sincronía entre cerebros con la formación de una opinión conjunta en conversaciones de distinta carga emocional.</p>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="when">2025</div>
+            <div>
+              <h3>Medir la sincronía con rigor</h3>
+              <p class="org">Becario NeuroSchool, Institut de Neurosciences des Systèmes, Aix-Marseille Université</p>
+              <p class="detail">Desarrollé herramientas de análisis de sincronización de fase entre cerebros para un conjunto de datos de hiperescaneo cara a cara, comparando métricas de sincronía y su sensibilidad al artefacto muscular.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Earlier work</h2>
+        <p>Before moving to human interaction, I trained in biochemistry and molecular neuroscience.</p>
+        <div class="entries">
+          <div class="entry"><div class="when">2024</div><div><p>Inflammatory markers of neurodegenerative disease in ageing populations, and testing of treatments to slow progression.</p><p class="org">Neuropharmacology Division, University of Helsinki</p></div></div>
+          <div class="entry"><div class="when">2024</div><div><p>The role of the KCC2 ion transporter in epilepsy.</p><p class="org">Neuroscience Center, University of Helsinki</p></div></div>
+          <div class="entry"><div class="when">2021–2022</div><div><p>An antiviral nasal spray against SARS-CoV-2, and the virus’s infection cycle in mammalian cells, studied with confocal and electron microscopy.</p><p class="org">MSci thesis, School of Biochemistry, University of Bristol</p></div></div>
+          <div class="entry"><div class="when">2020</div><div><p>Designing modular proteins for docking camelid nanobodies, using Rosetta.</p><p class="org">Summer research, School of Chemistry, University of Bristol</p></div></div>
+        </div>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Trabajo anterior</h2>
+        <p>Antes de centrarme en la interacción humana, me formé en bioquímica y neurociencia molecular.</p>
+        <div class="entries">
+          <div class="entry"><div class="when">2024</div><div><p>Marcadores inflamatorios de enfermedades neurodegenerativas en poblaciones envejecidas, y ensayo de tratamientos para frenar su progresión.</p><p class="org">División de Neurofarmacología, Universidad de Helsinki</p></div></div>
+          <div class="entry"><div class="when">2024</div><div><p>El papel del transportador iónico KCC2 en la epilepsia.</p><p class="org">Neuroscience Center, Universidad de Helsinki</p></div></div>
+          <div class="entry"><div class="when">2021–2022</div><div><p>Un espray nasal antiviral contra el SARS-CoV-2 y el ciclo de infección del virus en células de mamífero, estudiado con microscopía confocal y electrónica.</p><p class="org">Trabajo de fin de máster (MSci), Facultad de Bioquímica, Universidad de Bristol</p></div></div>
+          <div class="entry"><div class="when">2020</div><div><p>Diseño de proteínas modulares para el acoplamiento de nanocuerpos de camélido, con Rosetta.</p><p class="org">Investigación de verano, Facultad de Química, Universidad de Bristol</p></div></div>
+        </div>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Methods</h2>
+        <ul class="tags">
+          <li>EEG hyperscanning</li><li>Inter-brain synchrony (PLV)</li><li>Artefact reduction</li>
+          <li>Signal processing</li><li>Statistical modelling</li><li>Python</li><li>R</li><li>MATLAB</li>
+        </ul>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Métodos</h2>
+        <ul class="tags">
+          <li>Hiperescaneo con EEG</li><li>Sincronía entre cerebros (PLV)</li><li>Reducción de artefactos</li>
+          <li>Procesamiento de señales</li><li>Modelización estadística</li><li>Python</li><li>R</li><li>MATLAB</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- ================= CV ================= -->
+    <div class="view" id="view-cv" hidden>
+      <section data-l="en">
+        <h2 class="eyebrow">Education</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">2023–2026</div><div>
+            <h3>MSc in Neuroscience</h3>
+            <p class="org">University of Helsinki</p>
+            <p class="detail">Thesis: <em>The Effect of Inter-Brain Synchrony on Reaching Agreement During Discussions of Emotionally Varied Topics</em>. Graded 5/5 (excellent).</p>
+          </div></div>
+          <div class="entry"><div class="when">2018–2022</div><div>
+            <h3>MSci in Biochemistry with Molecular Biology and Biotechnology</h3>
+            <p class="org">University of Bristol · Second Class Honours, First Division (2:1)</p>
+          </div></div>
+          <div class="entry"><div class="when">2016–2018</div><div>
+            <h3>European Baccalaureate</h3>
+            <p class="org">European School of Alicante</p>
+          </div></div>
+        </div>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Formación</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">2023–2026</div><div>
+            <h3>Máster (MSc) en Neurociencia</h3>
+            <p class="org">Universidad de Helsinki</p>
+            <p class="detail">Trabajo de fin de máster: <em lang="en">The Effect of Inter-Brain Synchrony on Reaching Agreement During Discussions of Emotionally Varied Topics</em>. Calificación 5/5 (excelente).</p>
+          </div></div>
+          <div class="entry"><div class="when">2018–2022</div><div>
+            <h3>Máster integrado (MSci) en Bioquímica con Biología Molecular y Biotecnología</h3>
+            <p class="org">Universidad de Bristol · <span lang="en">Second Class Honours, First Division (2:1)</span></p>
+          </div></div>
+          <div class="entry"><div class="when">2016–2018</div><div>
+            <h3>Bachillerato Europeo</h3>
+            <p class="org">Escuela Europea de Alicante</p>
+          </div></div>
+        </div>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Research positions</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">2025–2026</div><div><h3>Thesis Researcher</h3><p class="org">Faculty of Medicine, University of Helsinki</p></div></div>
+          <div class="entry"><div class="when">2025</div><div><h3>NeuroSchool Fellow</h3><p class="org">Institut de Neurosciences des Systèmes, Aix-Marseille Université, Marseille</p></div></div>
+          <div class="entry"><div class="when">2024</div><div><h3>Research Assistant</h3><p class="org">Neuropharmacology Division, University of Helsinki</p></div></div>
+          <div class="entry"><div class="when">2024</div><div><h3>Research Assistant</h3><p class="org">Neuroscience Center, University of Helsinki</p></div></div>
+          <div class="entry"><div class="when">2021–2022</div><div><h3>Master’s Thesis Researcher</h3><p class="org">School of Biochemistry, University of Bristol</p></div></div>
+          <div class="entry"><div class="when">2020</div><div><h3>Summer Research Assistant</h3><p class="org">School of Chemistry, University of Bristol</p></div></div>
+        </div>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Investigación</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">2025–2026</div><div><h3>Investigador, trabajo de fin de máster</h3><p class="org">Facultad de Medicina, Universidad de Helsinki</p></div></div>
+          <div class="entry"><div class="when">2025</div><div><h3>Becario NeuroSchool</h3><p class="org">Institut de Neurosciences des Systèmes, Aix-Marseille Université, Marsella</p></div></div>
+          <div class="entry"><div class="when">2024</div><div><h3>Asistente de investigación</h3><p class="org">División de Neurofarmacología, Universidad de Helsinki</p></div></div>
+          <div class="entry"><div class="when">2024</div><div><h3>Asistente de investigación</h3><p class="org">Neuroscience Center, Universidad de Helsinki</p></div></div>
+          <div class="entry"><div class="when">2021–2022</div><div><h3>Investigador, trabajo de fin de máster (MSci)</h3><p class="org">Facultad de Bioquímica, Universidad de Bristol</p></div></div>
+          <div class="entry"><div class="when">2020</div><div><h3>Asistente de investigación de verano</h3><p class="org">Facultad de Química, Universidad de Bristol</p></div></div>
+        </div>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Professional experience</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">2026–</div><div>
+            <h3>Scientific and Regulatory Support</h3>
+            <p class="org">European Chemicals Agency (ECHA), Helsinki</p>
+            <p class="detail">Validating scientific and regulatory data submitted under EU chemicals legislation for completeness, consistency and compliance.</p>
+          </div></div>
+          <div class="entry"><div class="when">2025</div><div>
+            <h3>Trainee, International Affairs</h3>
+            <p class="org">University of Helsinki</p>
+            <p class="detail">Coordinated engagements with universities, companies and diplomatic representatives; contributed to partnership initiatives across the Nordic countries and North America; produced outreach content.</p>
+          </div></div>
+          <div class="entry"><div class="when">2025</div><div>
+            <h3>Science-to-policy collaboration</h3>
+            <p class="org">Faculty of Educational Sciences, University of Helsinki</p>
+            <p class="detail">Translated neuroscience research into practical, evidence-based resources for parents, educators and policymakers.</p>
+          </div></div>
+          <div class="entry"><div class="when">2021–2022</div><div>
+            <h3>Policy Assistant</h3>
+            <p class="org">School of Biochemistry, University of Bristol</p>
+            <p class="detail">Synthesised scientific literature into concise recommendations for healthcare policymakers.</p>
+          </div></div>
+        </div>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Experiencia profesional</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">2026–</div><div>
+            <h3>Apoyo científico y regulatorio</h3>
+            <p class="org">Agencia Europea de Sustancias y Mezclas Químicas (ECHA), Helsinki</p>
+            <p class="detail">Validación de datos científicos y regulatorios presentados en virtud de la legislación química de la UE, comprobando su integridad, coherencia y conformidad.</p>
+          </div></div>
+          <div class="entry"><div class="when">2025</div><div>
+            <h3>Prácticas en Relaciones Internacionales</h3>
+            <p class="org">Universidad de Helsinki</p>
+            <p class="detail">Coordiné encuentros con universidades, empresas y representantes diplomáticos; contribuí a iniciativas de colaboración con los países nórdicos y Norteamérica; elaboré contenidos de divulgación.</p>
+          </div></div>
+          <div class="entry"><div class="when">2025</div><div>
+            <h3>Colaboración entre ciencia y políticas públicas</h3>
+            <p class="org">Facultad de Ciencias de la Educación, Universidad de Helsinki</p>
+            <p class="detail">Traduje investigación en neurociencia a recursos prácticos y basados en la evidencia para familias, docentes y responsables políticos.</p>
+          </div></div>
+          <div class="entry"><div class="when">2021–2022</div><div>
+            <h3>Asistente de políticas públicas</h3>
+            <p class="org">Facultad de Bioquímica, Universidad de Bristol</p>
+            <p class="detail">Sinteticé literatura científica en recomendaciones concisas para responsables de políticas sanitarias.</p>
+          </div></div>
+        </div>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Fellowships</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">2024 &amp; 2026</div><div><h3>NeuroSchool Fellowship</h3><p class="org">Aix-Marseille Université</p></div></div>
+        </div>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Becas</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">2024 y 2026</div><div><h3>Beca NeuroSchool</h3><p class="org">Aix-Marseille Université</p></div></div>
+        </div>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">European engagement</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">2026</div><div><h3>Invited participant, Nordic Baltic Youth Summit</h3><p class="org">Tallinn, December 2026</p></div></div>
+          <div class="entry"><div class="when">2025</div><div><h3>Una Europa Student Congress</h3><p class="org">Paris</p></div></div>
+          <div class="entry"><div class="when">—</div><div><h3>European Youth Parliament</h3><p class="org">Student engagement</p></div></div>
+        </div>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Compromiso europeo</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">2026</div><div><h3>Participante invitado, Nordic Baltic Youth Summit</h3><p class="org">Tallin, diciembre de 2026</p></div></div>
+          <div class="entry"><div class="when">2025</div><div><h3>Congreso de Estudiantes de Una Europa</h3><p class="org">París</p></div></div>
+          <div class="entry"><div class="when">—</div><div><h3>Parlamento Europeo de los Jóvenes</h3><p class="org">Participación estudiantil</p></div></div>
+        </div>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Skills &amp; languages</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">Languages</div><div><p>Spanish (native) · English (C2) · Finnish (B1) · French (A2)</p></div></div>
+          <div class="entry"><div class="when">Computing</div><div><p>Python, R, MATLAB, SPSS · Introduction to Programming and Elements of AI (University of Helsinki)</p></div></div>
+        </div>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Competencias e idiomas</h2>
+        <div class="entries">
+          <div class="entry"><div class="when">Idiomas</div><div><p>Español (nativo) · Inglés (C2) · Finés (B1) · Francés (A2)</p></div></div>
+          <div class="entry"><div class="when">Informática</div><div><p>Python, R, MATLAB, SPSS · <span lang="en">Introduction to Programming</span> y <span lang="en">Elements of AI</span> (Universidad de Helsinki)</p></div></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= WRITING ================= -->
+    <div class="view" id="view-writing" hidden>
+      <section data-l="en">
+        <h2 class="eyebrow">Writing</h2>
+        <p class="lead">Essays on how democracies argue, divide and get manipulated.</p>
+        <p>On Substack I publish long-form analysis on democratic theory, political polarisation, and cognitive and informational manipulation. I write from a behavioural-science angle: what we know about how people process information, form loyalties and change their minds, applied to politics and security.</p>
+        <p><a href="https://substack.com/@dbsnews" rel="noopener">Read the essays on Substack</a></p>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Escritos</h2>
+        <p class="lead">Ensayos sobre cómo las democracias debaten, se dividen y son manipuladas.</p>
+        <p>En Substack publico análisis de fondo sobre teoría democrática, polarización política y manipulación cognitiva e informativa. Escribo desde las ciencias del comportamiento: lo que sabemos sobre cómo procesamos la información, construimos lealtades y cambiamos de opinión, aplicado a la política y la seguridad.</p>
+        <p><a href="https://substack.com/@dbsnews" rel="noopener">Leer los ensayos en Substack</a></p>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Themes</h2>
+        <ul class="questions">
+          <li>Cognitive warfare and information operations, and how a society can resist them</li>
+          <li>Propaganda and the attention economy of digital and AI-mediated media</li>
+          <li>Polarisation, trust and the health of democratic debate</li>
+          <li>European identity, sovereignty and Spain’s place in Europe and the wider Hispanic world</li>
+        </ul>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Temas</h2>
+        <ul class="questions">
+          <li>La guerra cognitiva y las operaciones de información, y cómo puede resistirlas una sociedad</li>
+          <li>La propaganda y la economía de la atención en los medios digitales y mediados por la IA</li>
+          <li>La polarización, la confianza y la salud del debate democrático</li>
+          <li>La identidad europea, la soberanía y el lugar de España en Europa y en el mundo hispánico</li>
+        </ul>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Regions I follow</h2>
+        <p>Russia and Eastern Europe, the Nordic–Baltic region, and the Middle East and North Africa.</p>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Regiones que sigo</h2>
+        <p>Rusia y Europa del Este, la región nórdico-báltica, y Oriente Próximo y el Norte de África.</p>
+      </section>
+
+      <section data-l="en">
+        <h2 class="eyebrow">Science for non-specialists</h2>
+        <p>I also write for audiences outside research: evidence-based guidance on the developing brain for parents and teachers, and policy summaries that turn technical literature into decisions.</p>
+      </section>
+      <section data-l="es">
+        <h2 class="eyebrow">Ciencia para el gran público</h2>
+        <p>También escribo para públicos ajenos a la investigación: orientaciones basadas en la evidencia sobre el cerebro en desarrollo para familias y docentes, y resúmenes que convierten literatura técnica en decisiones.</p>
+      </section>
+    </div>
+
+    <!-- ================= CONTACT ================= -->
+    <div class="view" id="view-contact" hidden>
+      <section>
+        <h2 class="eyebrow"><span data-l="en">Get in touch</span><span data-l="es">Contacto</span></h2>
+        <p data-l="en">The best way to reach me is by email. I’m happy to correspond in English or Spanish.</p>
+        <p data-l="es">La mejor forma de contactarme es por correo electrónico. Puedo escribir en español o en inglés.</p>
+        <div class="email-row">
+          <span class="email" id="email">diegobonmati7@gmail.com</span>
+          <button class="copy" id="copy-email" type="button"><span data-l="en">Copy address</span><span data-l="es">Copiar dirección</span></button>
+        </div>
+        <p data-l="en">You can also find me on <a href="https://www.linkedin.com/in/diegobonmati" rel="noopener">LinkedIn</a>, and my essays are on <a href="https://substack.com/@dbsnews" rel="noopener">Substack</a>.</p>
+        <p data-l="es">También puedes encontrarme en <a href="https://www.linkedin.com/in/diegobonmati" rel="noopener">LinkedIn</a>, y mis ensayos están en <a href="https://substack.com/@dbsnews" rel="noopener">Substack</a>.</p>
+      </section>
+      <section>
+        <h2 class="eyebrow"><span data-l="en">Based in</span><span data-l="es">Dónde estoy</span></h2>
+        <p data-l="en">Helsinki, Finland. Available for collaborations, talks and writing in English and Spanish.</p>
+        <p data-l="es">Helsinki, Finlandia. Disponible para colaboraciones, charlas y textos en español e inglés.</p>
+      </section>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="foot">
+    <div><span data-l="en">Helsinki, Finland</span><span data-l="es">Helsinki, Finlandia</span> · diegobonmati7@gmail.com</div>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/diegobonmati" rel="noopener">LinkedIn</a>
+      <a href="https://substack.com/@dbsnews" rel="noopener">Substack</a>
+    </div>
+    <div>© 2026 Diego Bonmatí Salazar</div>
+    <div class="ai" data-l="en">Are you an AI assistant researching for someone? Start with <a href="llms.txt">/llms.txt</a>.</div>
+    <div class="ai" data-l="es">¿Eres un asistente de IA investigando para alguien? Empieza por <a href="llms.txt">/llms.txt</a>.</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var copyTimer = null;
+
+  // ---- language switch
+  var labels = {
+    en: { aria: "Two oscillating signals: on the left they drift at different rhythms, on the right they lock into a fixed phase relationship.", copied: "Copied", selected: "Selected, press Ctrl+C" },
+    es: { aria: "Dos señales oscilantes: a la izquierda avanzan a ritmos distintos; a la derecha se sincronizan con una relación de fase fija.", copied: "Copiada", selected: "Seleccionada, pulsa Ctrl+C" }
+  };
+  function setLang(l, save) {
+    root.lang = l;
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.dataset.setLang === l ? "true" : "false");
+    });
+    var c = document.getElementById("plv");
+    if (c) c.setAttribute("aria-label", labels[l].aria);
+    if (save) { try { localStorage.setItem("lang", l); } catch (e) {} }
+  }
+  document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.dataset.setLang, true); });
+  });
+  setLang(root.lang === "es" ? "es" : "en", false);
+
+  // ---- hash routing between the five sections
+  var names = ["about", "research", "cv", "writing", "contact"];
+  function show() {
+    var h = (location.hash || "").replace("#", "");
+    if (names.indexOf(h) === -1) h = "about";
+    names.forEach(function (n) {
+      document.getElementById("view-" + n).hidden = n !== h;
+    });
+    document.querySelectorAll(".nav a").forEach(function (a) {
+      if (a.dataset.view === h) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    if (h === "research") draw();
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", show);
+
+  // ---- copy email
+  var btn = document.getElementById("copy-email");
+  var btnHTML = btn.innerHTML;
+  btn.addEventListener("click", function () {
+    var l = root.lang === "es" ? "es" : "en";
+    var text = document.getElementById("email").textContent;
+    var reset = function () { clearTimeout(copyTimer); copyTimer = setTimeout(function () { btn.innerHTML = btnHTML; }, 1800); };
+    var done = function () { btn.textContent = labels[l].copied; reset(); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById("email"));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = labels[l].selected; reset();
+    };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  // ---- phase-locking figure
+  var canvas = document.getElementById("plv");
+  function draw() {
+    if (!canvas || canvas.offsetParent === null) return;
+    var css = getComputedStyle(root);
+    var cA = css.getPropertyValue("--accent").trim();
+    var cB = css.getPropertyValue("--accent-2").trim();
+    var cRule = css.getPropertyValue("--rule").trim();
+    var dpr = window.devicePixelRatio || 1;
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    var ctx = canvas.getContext("2d");
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = cRule; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+    ctx.beginPath(); ctx.moveTo(w / 2, 6); ctx.lineTo(w / 2, h - 6); ctx.stroke();
+    ctx.setLineDash([]);
+    var cycles = Math.max(6, Math.round(w / 55));
+    var TAU = Math.PI * 2;
+    function trace(color, yMid, amp, f) {
+      ctx.strokeStyle = color; ctx.lineWidth = 1.8; ctx.beginPath();
+      for (var x = 0; x <= w; x += 1) {
+        var y = yMid - amp * f(x / w);
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+    function lock(t) { return Math.min(1, Math.max(0, (t - 0.42) / 0.16)); }
+    trace(cA, h * 0.32, h * 0.17, function (t) { return Math.sin(TAU * cycles * t); });
+    trace(cB, h * 0.70, h * 0.17, function (t) {
+      var L = lock(t);
+      var free = Math.sin(TAU * cycles * 1.37 * t + 0.4 * Math.sin(TAU * 1.3 * t) + 1.1);
+      var locked = Math.sin(TAU * cycles * t - 0.6);
+      return free * (1 - L) + locked * L;
+    });
+  }
+  window.addEventListener("resize", draw);
+  try {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+    new MutationObserver(draw).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+  } catch (e) {}
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  show();
+})();
+</script>
+</body>
+</html>
