@@ -665,7 +665,7 @@ html[lang="es"] [data-l="en"], html:not([lang="es"]) [data-l="es"] { display: no
         <p data-l="en">The best way to reach me is by email. I’m happy to correspond in English or Spanish.</p>
         <p data-l="es">La mejor forma de contactarme es por correo electrónico. Puedo escribir en español o en inglés.</p>
         <div class="email-row">
-          <span class="email" id="email">diegobonmati7@gmail.com</span>
+          <span class="email" id="email" data-u="bonmatidiego" data-d="proton.me">bonmatidiego [at] proton [dot] me</span>
           <button class="copy" id="copy-email" type="button"><span data-l="en">Copy address</span><span data-l="es">Copiar dirección</span></button>
         </div>
         <p data-l="en">You can also find me on <a href="https://www.linkedin.com/in/diegobonmati" rel="noopener">LinkedIn</a>, and my essays are on <a href="https://substack.com/@dbsnews" rel="noopener">Substack</a>.</p>
@@ -682,7 +682,7 @@ html[lang="es"] [data-l="en"], html:not([lang="es"]) [data-l="es"] { display: no
 
 <footer>
   <div class="foot">
-    <div><span data-l="en">Helsinki, Finland</span><span data-l="es">Helsinki, Finlandia</span> · diegobonmati7@gmail.com</div>
+    <div><span data-l="en">Helsinki, Finland</span><span data-l="es">Helsinki, Finlandia</span> · <span class="js-email">bonmatidiego [at] proton [dot] me</span></div>
     <div class="links">
       <a href="https://www.linkedin.com/in/diegobonmati" rel="noopener">LinkedIn</a>
       <a href="https://substack.com/@dbsnews" rel="noopener">Substack</a>
@@ -733,6 +733,11 @@ html[lang="es"] [data-l="en"], html:not([lang="es"]) [data-l="es"] { display: no
     window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", show);
+
+  // ---- assemble the email address (kept out of the HTML source for spam bots)
+  document.querySelectorAll("#email, .js-email").forEach(function (el) {
+    el.textContent = ["bonmatidiego", "proton.me"].join(String.fromCharCode(64));
+  });
 
   // ---- copy email
   var btn = document.getElementById("copy-email");
